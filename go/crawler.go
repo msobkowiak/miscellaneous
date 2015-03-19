@@ -23,6 +23,28 @@ func Sum(nums []float64) float64 {
 	return sum
 }
 
+func Min(nums []float64) float64 {
+	min := nums[0]
+	for _, num := range nums {
+		if num < min {
+			min = num
+		}
+	}
+
+	return min
+}
+
+func Max(nums []float64) float64 {
+	max := nums[0]
+	for _, num := range nums {
+		if num > max {
+			max = num
+		}
+	}
+
+	return max
+}
+
 func GetPrices(httpBody io.Reader) []string {
 	prices := make([]string, 0)
 	page := html.NewTokenizer(httpBody)
@@ -68,6 +90,8 @@ func main() {
 	defer resp.Body.Close()
 
 	numbers := converStringToFloat(prices)
-	fmt.Println("Sum of prices: ", Sum(numbers), "€")
-	fmt.Println("Avagare price: ", Avarage(numbers), "€")
+	fmt.Println("Sum of prices:", Sum(numbers), "€")
+	fmt.Println("Avagare price:", Avarage(numbers), "€")
+	fmt.Println("The smallest price:", Min(numbers), "€")
+	fmt.Println("The highest price:", Max(numbers), "€")
 }
